@@ -1,0 +1,47 @@
+#{extends 'CRUD/layout.html' /}
+
+#{form @Clubs.setmember(), id:'creationForm', enctype:'multipart/form-data' }
+<p>
+<label>Select Club :</label> 
+#{select 'selectedClub', value:2, id:'selectedClub'}
+#{list clubs, as: 'club'}
+	#{option club.id}${club.name}#{/option}
+#{/list}	
+#{/select}
+
+</p>
+<p>
+<label>Select Member :</label>
+ <input type="text" id="memb" name="memb" size="40"/>
+ </p>
+<script>
+$( "#memb" ).autocomplete({ source: function (request, response){
+$.ajax({
+	url:"@{Application.members()}",
+	dataType: "json",
+	data: {
+		term: request.term
+	},
+	success: function ( data ){
+	response ( $.map( data, function( item ){
+	return {
+	label: item.firstName,
+	value: item.firstName
+	}
+}));
+}
+});
+},
+minLength: 2
+});
+</script>
+<input type="submit" value="Save"/>
+#{/form}
+
+
+</br>
+Note: available auto select values<ul>
+#{list members, as: 'member'}
+<li>${member.firstName}</li>
+#{/list}
+</ul>

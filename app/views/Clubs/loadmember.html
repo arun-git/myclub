@@ -1,0 +1,19 @@
+#{extends 'CRUD/layout.html' /}
+
+#{form @Clubs.setmembers(), id:'creationForm', enctype:'multipart/form-data' }
+<p>
+<label>Select Club :</label> 
+#{select 'selectedClub', value:2, id:'selectedClub'}
+#{list clubs, as: 'club'}
+	#{option club.id}${club.name}#{/option}
+#{/list}	
+#{/select}
+
+</p>
+<p>
+<label>Upload CSV File :</label>
+<input type="file" name="data" />
+ </p>
+
+<input type="submit" value="Save"/>
+#{/form}

@@ -1,0 +1,10 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+
+name=Name
+firstName=First Name
+lastName=Last Name
+members=Members
+club=Club
+joinedDate=Joined Date
