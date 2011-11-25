@@ -120,5 +120,6 @@
 	<classpathentry kind="lib" path="D:/play/framework/lib/snakeyaml-1.7.jar"/>
 	<classpathentry kind="lib" path="D:/play/framework/lib/xstream-1.3.jar"/>
 	<classpathentry kind="lib" path="lib/javacsv.jar"/>
+	<classpathentry kind="lib" path="lib/lucene-core-3.4.0.jar"/>
 	<classpathentry kind="output" path="eclipse/classes"/>
 </classpath>

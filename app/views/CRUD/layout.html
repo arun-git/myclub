@@ -4,7 +4,14 @@
     <head>
         <title>#{get 'title' /}</title>		
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/crud.css'}" />
+
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/bootstrap.css'}" />
+            <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+        
         <link type="text/css" href="@{'/public/stylesheets/ui-lightness/jquery-ui-1.8.16.custom.css'}" rel="stylesheet" />
         <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="utf-8"></script>
         <script src="@{'/public/javascripts/jquery-ui-1.8.16.custom.min.js'}" type="text/javascript" charset="utf-8"></script>
@@ -34,35 +41,45 @@
 		</script> 
 	</head>
 	<body id="crud">
+	<div class="topbar">
+      <div class="topbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">My Club</a>
+          <p class="pull-right">Logged in as <a href="#">Guest User</a></p>
+        </div>
+      </div>
+    </div>
 		
-		<div id="crudHeader">
-			<h1><a href="\">&{'crud.title'}</a></h1>
-		</div>
-		
-		#{if request.actionMethod != 'index'}
-			<div id="crudBreadcrumb">
-				#{crud.navigation /}
-			</div>
-		#{/if}
-
-		#{if flash.success}
-			<div class="crudFlash flashSuccess">
-				${flash.success}
-			</div>
-		#{/if}
-		#{if flash.error || error}
-			<div class="crudFlash flashError">
-				${error ?: flash.error}
-			</div>
-		#{/if}
-		
-		<div id="crudContent">
+<div class="container-fluid">
+      <div class="sidebar">
+        <div class="well">
+          <h5>Manage Club</h5>
+          <ul>
+            <li><a href="/clubs/list">List Club</a></li>
+            <li><a href="/clubs/blank">Add Club</a></li>
+            <li><a href="/clubs/addmember">Add Member to Club</a></li>
+            <li><a href="/clubs/loadmember">Upload Members to Club</a></li>
+          </ul>
+          <h5>Manage Member</h5>
+          <ul>
+            <li><a href="/members/list">List Member</a></li>
+            <li><a href="/members/blank">Add Member</a></li>
+            <li><a href="/members/search">Search Member</a></li>
+          </ul>
+          
+        </div>
+      </div>
+      <div class="content">
+        <!-- Main hero unit for a primary marketing message or call to action -->
+        <div class="hero-unit">
+      	
 			#{doLayout /}
-		</div>
 		
-		<div id="crudFooter">
-			This is a test assignment!
-		</div>
-		
+      </div>
+        </div>
+        <footer>
+          <p>&copy; MyClub - a test application</p>
+        </footer>
+    </div>		
 	</body>
 </html>

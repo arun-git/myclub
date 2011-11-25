@@ -24,13 +24,14 @@ public class Clubs extends controllers.CRUD {
 
 
 	public static void addmember(){
-		System.out.println("inside addmember");
+		Logger.info("inside addmember");
 		List members = Member.all().fetch();
 		List clubs = Club.all().fetch();
 		render(members, clubs);
 	}
 
 	public static void setmember(){
+		Logger.info("inside setmember");
 		String clubId = params.get("selectedClub");
 		String memberFirstName = params.get("memb");
 		Club club = Club.findById(new Long(clubId));
@@ -55,7 +56,6 @@ public class Clubs extends controllers.CRUD {
 		Club club = Club.findById(new Long(clubId));
 		
 		Logger.info(data.getContentType());
-    	Logger.info(data.getFieldName());
     	Logger.info(data.getFileName());
 		
     	try {
