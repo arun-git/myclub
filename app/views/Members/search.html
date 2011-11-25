@@ -1,0 +1,15 @@
+#{extends 'CRUD/layout.html' /}
+
+#{form @Members.search(), id:'searchForm'}
+
+<p>
+<label>Search Member :</label>
+ <input type="text" id="searchTerm" name="searchTerm" size="40"/>
+ </p>
+<input type="submit" value="Search"/>
+#{/form}
+
+</br>
+Result:</br>
+<b>${result}</b>
+
