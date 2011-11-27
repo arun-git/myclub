@@ -1,12 +1,14 @@
 package models;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import controllers.CRUD.Hidden;
 
 import siena.*;
 
-public class Member extends Model {
+public class Member extends Model implements Serializable {
 
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;
@@ -22,6 +24,11 @@ public class Member extends Model {
 	
 	@NotNull
 	public Date joinedDate;
+	
+
+	public String formattedDate() {
+		return new SimpleDateFormat("dd-MM-yyyy").format(joinedDate);
+	}
 
 	public Member() {
 		super();

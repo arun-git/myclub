@@ -1,5 +1,6 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,7 @@ import siena.*;
 import siena.core.Many;
 import siena.core.Owned;
 
-public class Club extends Model {
+public class Club extends Model implements Serializable{
 
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;

@@ -4,12 +4,12 @@
 	
 	<h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
 
-	<div id="crudListSearch">
-		#{crud.search/}
-	</div>
 
 	<div id="crudListTable">
 		#{crud.table fields:['id', 'firstName','lastName','joinedDate']}
+			#{crud.custom 'joinedDate'}
+       			${object.formattedDate()}
+   			#{/crud.custom}
 		#{/crud.table}
 	</div>
 	
