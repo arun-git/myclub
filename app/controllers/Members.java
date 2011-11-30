@@ -168,4 +168,8 @@ public class Members extends controllers.CRUD {
 		}
 		return obj;
 	}
+	
+	public static void googlemap(){
+		render();
+	}
 }

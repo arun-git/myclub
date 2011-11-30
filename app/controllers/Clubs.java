@@ -70,7 +70,7 @@ public class Clubs extends controllers.CRUD {
 				Member member = new Member();
 				member.firstName = firstName;
 				member.lastName = lastName;
-				DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); 
+				DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); 
 				Date date = (Date)formatter.parse(joinedDate);
 				member.joinedDate = date;
 				SienaPlugin.pm().save(member);

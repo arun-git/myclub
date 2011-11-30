@@ -27,7 +27,7 @@ public class Member extends Model implements Serializable {
 	
 
 	public String formattedDate() {
-		return new SimpleDateFormat("dd-MM-yyyy").format(joinedDate);
+		return new SimpleDateFormat("dd/MM/yyyy").format(joinedDate);
 	}
 
 	public Member() {
