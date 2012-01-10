@@ -22,7 +22,6 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.IndexSearcher;
@@ -60,23 +59,27 @@ public class Members extends controllers.CRUD {
 
 		if(members == null) {
 			members = Member.all().fetch();
+			if(members != null){
 			cache.put("members", toByteArray(members));
+			}else{
+				Logger.error("No members fetched from GAE datastore");
+			}
 			Logger.info("List of members cached ::"+members.size());
 		}
 		return members;
 	}
 
 
+	@SuppressWarnings("deprecation")
 	public static void search() throws CorruptIndexException, IOException, ParseException{
 		String result="";
 		String term = params.get("searchTerm");
 		Logger.info("inside search members with term =: "+term);
 
 		RAMDirectory directory = new RAMDirectory();
-		Analyzer analyzer =  new StandardAnalyzer(Version.LUCENE_34);
+		Analyzer analyzer =  new StandardAnalyzer(Version.LUCENE_29);
 
-		IndexWriterConfig indexWriterConfig = new IndexWriterConfig(Version.LUCENE_34, analyzer);
-		IndexWriter writer = new IndexWriter(directory, indexWriterConfig);
+		IndexWriter writer = new IndexWriter(directory, analyzer);
 
 		List<Member> members = allMembersFromCache();
 		if(members !=null){
@@ -106,7 +109,7 @@ public class Members extends controllers.CRUD {
 			IndexSearcher searcher = new IndexSearcher(directory);
 			String[] fieldsArray = {"name","joined"};
 
-			MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_34, fieldsArray, analyzer);
+			MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_29, fieldsArray, analyzer);
 			parser.setLowercaseExpandedTerms(false);
 			Query query = parser.parse(term);
 
@@ -147,7 +150,7 @@ public class Members extends controllers.CRUD {
 			bytes = bos.toByteArray ();
 		}
 		catch (IOException ex) {
-			Logger.error("IO Exception while converting members into byte[]"+ex.getCause().getMessage());
+			Logger.error("IO Exception while converting members into byte[]"+ex.getMessage());
 		}
 		return bytes;
 	}
